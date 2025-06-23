@@ -3,30 +3,51 @@ import api from "../../services/api";
 import { Background, Info, Poster, Container, ContainerButtons } from "./styles";
 import { useState, useEffect } from "react";
 import Button from "../../components/Button";
+import Slider from "../../components/Slider";
+import  getImages  from "../../utils/getImages";
 
 function Home() {
 
-  const [movie, setMovies] = useState();
+  const [movie, setMovie] = useState();
+  const [topMovies, setTopMovies] = useState();
 
   useEffect(() => {
     async function getMovies() {
       try {
-        const response = await api.get('/movie/popular');
-        setMovies(response.data.results[3]);
+        const { 
+          data: { results} 
+        } = await api.get('/movie/popular');
+        
+        setMovie(results[0]);
+
       } catch (error) {
         console.error("Error fetching movies:", error);
       }
     }
-    
+  
+
+    async function getTopMovies() {
+      try {
+        const {
+          data: { results }
+        } = await api.get('/movie/top_rated');
+        console.log(results);
+        setTopMovies(results);
+      } catch (error) {
+        console.error("Error fetching movies:", error);
+      }
+    }
 
     getMovies()
+    getTopMovies();
   }, []);
 
   return (
 
     <>
     { movie && (
-      <Background $img={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}>
+      <Background 
+        img={getImages(movie.backdrop_path)}>
 
         <Container>
           <Info>
@@ -38,11 +59,12 @@ function Home() {
           </ContainerButtons>
         </Info>
         <Poster>
-          <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie.title}/>
+          <img src={getImages(movie.poster_path)} alt={movie.title}/>
         </Poster>
         </Container>
       </Background>
     ) }
+    {topMovies && <Slider info={topMovies} title={'Top Filmes'} />}
     </>
   );
 }
