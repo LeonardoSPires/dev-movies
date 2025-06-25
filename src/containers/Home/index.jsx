@@ -10,6 +10,9 @@ function Home() {
 
   const [movie, setMovie] = useState();
   const [topMovies, setTopMovies] = useState();
+  const [topSeries, setTopSeries] = useState();
+  const [popSeries, setPopSeries] = useState();
+  const [topPeople, setTopPeople] = useState();
 
   useEffect(() => {
     async function getMovies() {
@@ -25,7 +28,6 @@ function Home() {
       }
     }
   
-
     async function getTopMovies() {
       try {
         const {
@@ -37,17 +39,52 @@ function Home() {
         console.error("Error fetching movies:", error);
       }
     }
+    async function getTopSeries() {
+      try {
+        const {
+          data: { results }
+        } = await api.get('/tv/top_rated');
+        console.log(results);
+        setTopSeries(results);
+      } catch (error) {
+        console.error("Error fetching movies:", error);
+      }
+    }
+    async function getPopSeries() {
+      try {
+        const {
+          data: { results }
+        } = await api.get('/tv/popular');
+        console.log(results);
+        setPopSeries(results);
+      } catch (error) {
+        console.error("Error fetching movies:", error);
+      }
+    }
+    async function getTopPeople() {
+      try {
+        const {
+          data: { results }
+        } = await api.get('/person/popular');
+        console.log(results);
+        setTopPeople(results);
+      } catch (error) {
+        console.error("Error fetching movies:", error);
+      }
+    }
 
-    getMovies()
+    getMovies();
     getTopMovies();
+    getTopSeries();
+    getPopSeries();
+    getTopPeople();
   }, []);
 
   return (
 
     <>
-    { movie && (
-      <Background 
-        img={getImages(movie.backdrop_path)}>
+    {movie && (
+      <Background $img={getImages(movie.backdrop_path)}>
 
         <Container>
           <Info>
@@ -63,8 +100,11 @@ function Home() {
         </Poster>
         </Container>
       </Background>
-    ) }
+    )}
     {topMovies && <Slider info={topMovies} title={'Top Filmes'} />}
+    {topSeries && <Slider info={topSeries} title={'Top Séries'} />}
+    {popSeries && <Slider info={popSeries} title={'Séries populares'} />}
+    {topPeople && <Slider info={topPeople} title={'Top Artistas'} />}
     </>
   );
 }

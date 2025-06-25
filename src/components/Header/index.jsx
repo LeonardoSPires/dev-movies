@@ -1,11 +1,24 @@
 import React from 'react';
 import Logo from '../../assets/logo.png';
-import { MainHeader } from './styles';
+import { Link } from 'react-router-dom';
+import { MainHeader, Menu, Li,  } from './styles';
 
 function Header() {
   return (
     <MainHeader>
-        <img src={Logo} alt="logo-dev-movies" style={{ width: 500 }} />
+        <img src={Logo} alt="logo-dev-movies"/>
+        <Menu>
+            <Li>
+                <Link to="/">Home</Link>
+            </Li>
+            <Li>
+                <Link to="/movies">Filmes</Link>
+            </Li>
+            <Li>
+                <Link to="/series">Séries</Link>
+            </Li>
+            
+        </Menu>
     </MainHeader>
   )
 }

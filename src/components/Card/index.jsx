@@ -9,11 +9,15 @@ import { ContainerCard } from './styles';
 function Card({ item }) {
     return (
         <ContainerCard>
-            <ImgCard src={getImages(item.poster_path)} />
+            <ImgCard 
+                src={
+                    getImages(
+                    item.poster_path || 
+                    item.profile_path || 
+                    "")
+                    } />
             <TitleCard>
-                
-                    {item.original_title}
-                
+                    {item.title || item.name }
             </TitleCard>             
         </ContainerCard>
     );

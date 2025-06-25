@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Background = styled.div`
   background-image: url(${(props) => props.$img});
   height: 100vh;
+  max-width: 100vw;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -17,7 +18,7 @@ export const Background = styled.div`
     right: 0;
     width: 100%;
     height: 100%;
-    background-color: #121212;
+    background-color:rgba(0, 0, 0, 0.5);
   }
 `;
 export const Container = styled.div`
@@ -49,7 +50,7 @@ export const Info = styled.div`
 export const Poster = styled.div`
   z-index: 2;
   img {
-    width: 400px;
+    width: 300px;
     border-radius: 30px;
   }
 `;
