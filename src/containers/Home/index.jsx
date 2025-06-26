@@ -1,110 +1,68 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import api from "../../services/api";
 import { Background, Info, Poster, Container, ContainerButtons } from "./styles";
-import { useState, useEffect } from "react";
 import Button from "../../components/Button";
 import Slider from "../../components/Slider";
-import  getImages  from "../../utils/getImages";
+import getImages from "../../utils/getImages";
+import sliderConfigs from "../../utils/sliderConfigs";
+
 
 function Home() {
+  const [mainHighlight, setMainHighlight] = useState();
+  const [selectedItem, setSelectedItem] = useState();
+  const [lists, setLists] = useState({});
 
-  const [movie, setMovie] = useState();
-  const [topMovies, setTopMovies] = useState();
-  const [topSeries, setTopSeries] = useState();
-  const [popSeries, setPopSeries] = useState();
-  const [topPeople, setTopPeople] = useState();
+  // Função genérica para buscar dados
+  async function fetchList(endpoint, key, setHighlight = false) {
+    try {
+      const { data: { results } } = await api.get(endpoint);
+      setLists(prev => ({ ...prev, [key]: results }));
+      if (setHighlight && results.length > 0) setMainHighlight(results[0]);
+    } catch (error) {
+      console.error(`Error fetching ${key}:`, error);
+    }
+  }
 
   useEffect(() => {
-    async function getMovies() {
-      try {
-        const { 
-          data: { results} 
-        } = await api.get('/movie/popular');
-        
-        setMovie(results[0]);
-
-      } catch (error) {
-        console.error("Error fetching movies:", error);
-      }
-    }
-  
-    async function getTopMovies() {
-      try {
-        const {
-          data: { results }
-        } = await api.get('/movie/top_rated');
-        console.log(results);
-        setTopMovies(results);
-      } catch (error) {
-        console.error("Error fetching movies:", error);
-      }
-    }
-    async function getTopSeries() {
-      try {
-        const {
-          data: { results }
-        } = await api.get('/tv/top_rated');
-        console.log(results);
-        setTopSeries(results);
-      } catch (error) {
-        console.error("Error fetching movies:", error);
-      }
-    }
-    async function getPopSeries() {
-      try {
-        const {
-          data: { results }
-        } = await api.get('/tv/popular');
-        console.log(results);
-        setPopSeries(results);
-      } catch (error) {
-        console.error("Error fetching movies:", error);
-      }
-    }
-    async function getTopPeople() {
-      try {
-        const {
-          data: { results }
-        } = await api.get('/person/popular');
-        console.log(results);
-        setTopPeople(results);
-      } catch (error) {
-        console.error("Error fetching movies:", error);
-      }
-    }
-
-    getMovies();
-    getTopMovies();
-    getTopSeries();
-    getPopSeries();
-    getTopPeople();
+    sliderConfigs.forEach(cfg => {
+      fetchList(cfg.endpoint, cfg.key, cfg.key === "topMovies");
+    });
   }, []);
 
+  const highlight = selectedItem || mainHighlight;
+
   return (
-
     <>
-    {movie && (
-      <Background $img={getImages(movie.backdrop_path)}>
-
-        <Container>
-          <Info>
-          <h1>{movie.title}</h1>
-          <p>{movie.overview}</p>
-          <ContainerButtons>
-            <Button red={true}>Assista Agora</Button>
-            <Button red={false}>Assista o Trailer</Button>
-          </ContainerButtons>
-        </Info>
-        <Poster>
-          <img src={getImages(movie.poster_path)} alt={movie.title}/>
-        </Poster>
-        </Container>
-      </Background>
-    )}
-    {topMovies && <Slider info={topMovies} title={'Top Filmes'} />}
-    {topSeries && <Slider info={topSeries} title={'Top Séries'} />}
-    {popSeries && <Slider info={popSeries} title={'Séries populares'} />}
-    {topPeople && <Slider info={topPeople} title={'Top Artistas'} />}
+      {highlight && (
+        <Background $img={getImages(highlight.backdrop_path || highlight.profile_path)}>
+          <Container>
+            <Info>
+              <h1>{highlight.title || highlight.name}</h1>
+              <p>{highlight.overview || highlight.known_for_department}</p>
+              <ContainerButtons>
+                <Button red={true}>Assista Agora</Button>
+                <Button red={false}>Assista o Trailer</Button>
+              </ContainerButtons>
+            </Info>
+            <Poster>
+              <img
+                src={getImages(highlight.poster_path || highlight.profile_path)}
+                alt={highlight.title || highlight.name}
+              />
+            </Poster>
+          </Container>
+        </Background>
+      )}
+      {sliderConfigs.map(cfg =>
+        lists[cfg.key] ? (
+          <Slider
+            key={cfg.key}
+            info={lists[cfg.key]}
+            title={cfg.title}
+            onSelect={setSelectedItem}
+          />
+        ) : null
+      )}
     </>
   );
 }

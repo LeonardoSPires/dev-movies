@@ -6,25 +6,23 @@ import { TitleCard } from './styles';
 import { ImgCard } from './styles';
 import { ContainerCard } from './styles';
 
-function Card({ item }) {
-    return (
-        <ContainerCard>
-            <ImgCard 
-                src={
-                    getImages(
-                    item.poster_path || 
-                    item.profile_path || 
-                    "")
-                    } />
-            <TitleCard>
-                    {item.title || item.name }
-            </TitleCard>             
-        </ContainerCard>
-    );
+function Card({ item, selectCard }) {
+  return (
+    <ContainerCard onClick={selectCard}>
+      <ImgCard 
+        src={getImages(item.poster_path || item.profile_path || "")}
+        alt={item.title || item.name}
+      />
+      <TitleCard>
+        {item.title || item.name}
+      </TitleCard>
+    </ContainerCard>
+  );
 }
 
 Card.propTypes = {
-    item: PropTypes.object.isRequired, // Ou defina a estrutura exata se quiser mais precisão
+  item: PropTypes.object.isRequired,
+  selectCard: PropTypes.func,
 };
 
 export default Card;
