@@ -11,7 +11,7 @@ export default createGlobalStyle`
 
   body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #121212;
+    background:#000;
     color: #FFFFFF;
   }
 

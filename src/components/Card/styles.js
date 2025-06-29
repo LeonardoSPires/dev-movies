@@ -12,9 +12,9 @@ export const ImgCard = styled.img`
   border-radius: 30px;
   width: 300px;
   height: 450px;
-  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.75);
-`;
-
+  box-shadow: 7px 10px 20px  #005;
+  margin: 0 5px;
+  `
 export const TitleCard = styled.h3`
   color: #fff;
   margin-top: 15px;

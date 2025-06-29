@@ -1,13 +1,13 @@
 const sliderConfigs = [
   {
-    key: "topMovies",
+    key: "popMovies",
     title: "Filmes Populares",
     endpoint: "/movie/popular",
   },
-  {
-    key: "topSeries",
-    title: "Top Séries",
-    endpoint: "/tv/top_rated",
+    {
+    key: "topMovies",
+    title: "Top Filmes",
+    endpoint: "/movie/top_rated",
   },
   {
     key: "popSeries",
@@ -15,10 +15,11 @@ const sliderConfigs = [
     endpoint: "/tv/popular",
   },
   {
-    key: "topPeople",
-    title: "Top Artistas",
-    endpoint: "/movie/top_rated",
+    key: "topSeries",
+    title: "Top Séries",
+    endpoint: "/tv/top_rated",
   },
+
 ];
 
 export default sliderConfigs;

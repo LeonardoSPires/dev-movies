@@ -1,19 +1,21 @@
 import styled from "styled-components";
 
 export const MainHeader = styled.header`
-    position: fixed;
-    top: 0;
-    z-index: 99;
-    width: 100vw;
-    height: 70px;
-    background-color:transparent;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 10px;
+  background-color: ${(props =>
+    props.scrolled ? "#000" : 'transparent' )};
+  transition: ease-in-out 0.7s;
+  position: fixed;
+  width: 100vw;
+  z-index: 10;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    img{
-        width: 25%;
+    img {
+        width: 30%;
+        min-height: 70px;
+        margin: 10px 0;
     }
 `;
 
@@ -32,18 +34,17 @@ export const Li = styled.li`
 
     a{
         color: #fff;
+        
     }
-
     a::after {
         content: "";
         height: 3px;
         width: 100%;
-        background-color: #189b20;
+        background-color: #005;
         position: absolute;
         bottom: -10px;
         left: 0;
     }
+    
 `
 
-export const Link = styled.a`
-`

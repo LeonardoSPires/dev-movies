@@ -28,9 +28,9 @@ function Slider({ info, title, onSelect }) {
 }
 
 Slider.propTypes = {
-  info: PropTypes.array.isRequired, // ou PropTypes.arrayOf(PropTypes.object)
+  info: PropTypes.array.isRequired,
   title: PropTypes.string,
-  onSelect: PropTypes.func.isRequired, // ou PropTypes.func se não for obrigatório
+  onSelect: PropTypes.func.isRequired, 
 };
 
 export default Slider;

@@ -16,6 +16,7 @@ function Home() {
   async function fetchList(endpoint, key, setHighlight = false) {
     try {
       const { data: { results } } = await api.get(endpoint);
+      console.log("Resultados recebidos para", key, ":", results); // Mostra os dados recebidos
       setLists(prev => ({ ...prev, [key]: results }));
       if (setHighlight && results.length > 0) setMainHighlight(results[0]);
     } catch (error) {
@@ -25,7 +26,7 @@ function Home() {
 
   useEffect(() => {
     sliderConfigs.forEach(cfg => {
-      fetchList(cfg.endpoint, cfg.key, cfg.key === "topMovies");
+      fetchList(cfg.endpoint, cfg.key, cfg.key === "popMovies");
     });
   }, []);
 
@@ -38,7 +39,11 @@ function Home() {
           <Container>
             <Info>
               <h1>{highlight.title || highlight.name}</h1>
-              <p>{highlight.overview || highlight.known_for_department}</p>
+              <p>
+                {highlight.overview ||
+                  highlight.known_for_department ||
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut laoreet dictum, massa erat ultricies enim, nec dictum ex enim nec urna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."}
+              </p>
               <ContainerButtons>
                 <Button red={true}>Assista Agora</Button>
                 <Button red={false}>Assista o Trailer</Button>
