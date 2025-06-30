@@ -15,6 +15,15 @@ const buttonStyles = css`
         color: #ff0000;
         transition: 0.3s;
     }
+
+    @media (max-width: 600px) {
+        padding: 8px 12px;
+        font-size: 16px;
+        width: 90%;
+        min-width: 120px;
+        margin: 0 auto;
+        display: block;
+    }
 `
 
 export const ButtonWithe = styled.button`

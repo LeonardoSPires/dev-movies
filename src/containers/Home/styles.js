@@ -10,6 +10,8 @@ export const Background = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+
   &::before {
     content: "";
     position: absolute;
@@ -17,8 +19,15 @@ export const Background = styled.div`
     left: 0;
     right: 0;
     width: 100%;
-    height: 100vh;
-    background-color:rgba(0, 0, 0, 0.5);
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  @media (max-width: 900px) {
+    
+    height: auto;
+    min-height: 100vh;
+    align-items: flex-start;
   }
 `;
 export const Container = styled.div`
@@ -26,7 +35,19 @@ export const Container = styled.div`
   justify-content: space-around;
   align-items: center;
   height: 100%;
-  max-width: 1500px
+  max-width: 1500px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+
+  @media (max-width: 900px) {
+    flex-direction: row;
+  }
+  @media (max-width: 500px) {
+    flex-direction: column;
+    padding: 60px 0;
+  }
+
 `;
 export const Info = styled.div`
   position: relative;
@@ -45,6 +66,20 @@ export const Info = styled.div`
     font-weight: 500;
     margin: 30px 0 20px 0;
   }
+
+  @media (max-width: 900px) {
+    width: 100%;
+    text-align: center;
+    
+
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    p {
+      font-size: .8rem;
+    }
+  }
 `;
 
 export const Poster = styled.div`
@@ -53,10 +88,29 @@ export const Poster = styled.div`
     width: 300px;
     border-radius: 30px;
   }
+
+  @media (max-width: 900px) {
+    img {
+      width: 180px;
+      margin-top: 90px;
+    }
+  }
+  @media (max-width: 500px) {
+    img {
+      width: 170px;
+      margin-top: 0px;
+    }
+  }
 `;
 
 export const ContainerButtons = styled.div`
   display: flex;
   gap: 20px;
   margin-top: 20px;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
 `;
