@@ -2,7 +2,7 @@
   "name": "dev-movies",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://LeonardoSPires.github.io/dev-movies/",
+  "homepage": "https://LeonardoSPires.github.io/dev-movies",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",

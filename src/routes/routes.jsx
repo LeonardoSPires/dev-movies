@@ -6,15 +6,21 @@ import Movies from "../containers/Movies";
 import Series from "../containers/Series";
 import DefaultLayout from "../layout/DefaultLayout";
 
+import { BrowserRouter } from "react-router-dom";
+
+
+
 function AppRoutes() {
   return (
-    <Routes>
+    <BrowserRouter basename="/dev-movies">{
+      <Routes>
         <Route element={<DefaultLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/movies" element={<Movies />} />
             <Route path="/series" element={<Series />} />
         </Route>
-    </Routes>
+      </Routes>}
+    </BrowserRouter>
   );
 }
 
