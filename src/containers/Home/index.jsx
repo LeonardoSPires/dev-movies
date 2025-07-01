@@ -5,6 +5,7 @@ import Button from "../../components/Button";
 import Slider from "../../components/Slider";
 import getImages from "../../utils/getImages";
 import sliderConfigs from "../../utils/sliderConfigs";
+import Modal from "../../components/Modal";
 
 
 function Home() {
@@ -32,10 +33,16 @@ function Home() {
 
   const highlight = selectedItem || mainHighlight;
 
+  function handleSelectItem(item) {
+    setSelectedItem(item);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
   return (
     <>
       {highlight && (
         <Background $img={getImages(highlight.backdrop_path || highlight.profile_path)}>
+          <Modal movieId={highlight.id} />
           <Container>
             <Info>
               <h1>{highlight.title || highlight.name}</h1>
@@ -64,7 +71,7 @@ function Home() {
             key={cfg.key}
             info={lists[cfg.key]}
             title={cfg.title}
-            onSelect={setSelectedItem}
+            onSelect={handleSelectItem}
           />
         ) : null
       )}

@@ -16,7 +16,7 @@ export const MainHeader = styled.header`
     width: 30%;
     min-height: 70px;
     margin: 10px 0;
-    max-width: 180px;
+    max-width: 300px;
     height: auto;
   }
 
@@ -70,15 +70,25 @@ export const Li = styled.li`
     text-decoration: none;
     font-size: 1.1rem;
   }
+  a:hover {
+ 
+    color:#c2bbbb;
+    transition: color 0.4s ease-in-out;
+  }
 
   a::after {
     content: "";
     height: 3px;
     width: 100%;
-    background-color: #005;
+    background-color: #007;
     position: absolute;
     bottom: -10px;
     left: 0;
+
+  }
+  a:hover::after {
+    background-color: #003;
+    transition: background-color 0.3s ease-in-out;
   }
 
   @media (max-width: 900px) {
@@ -91,7 +101,7 @@ export const Li = styled.li`
   @media (max-width: 600px) {
     font-size: 0.95rem;
     a {
-      font-size: 0.95rem;
+      font-size: 0.8rem;
     }
   }
 `;

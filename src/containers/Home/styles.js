@@ -45,7 +45,8 @@ export const Container = styled.div`
   }
   @media (max-width: 500px) {
     flex-direction: column;
-    padding: 60px 0;
+    align-items: center;
+    padding-top: 120px;
   }
 
 `;
