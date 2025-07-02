@@ -9,6 +9,8 @@ import Modal from "../../components/Modal";
 
 
 function Home() {
+
+  const [showModal, setShowModal] = useState(false);
   const [mainHighlight, setMainHighlight] = useState();
   const [selectedItem, setSelectedItem] = useState();
   const [lists, setLists] = useState({});
@@ -42,7 +44,8 @@ function Home() {
     <>
       {highlight && (
         <Background $img={getImages(highlight.backdrop_path || highlight.profile_path)}>
-          <Modal movieId={highlight.id} />
+          {showModal && 
+            <Modal movieId={highlight.id} setShowModal={setShowModal} />}
           <Container>
             <Info>
               <h1>{highlight.title || highlight.name}</h1>
@@ -53,7 +56,7 @@ function Home() {
               </p>
               <ContainerButtons>
                 <Button red={true}>Assista Agora</Button>
-                <Button red={false}>Assista o Trailer</Button>
+                <Button onClick={() => setShowModal(true)} red={false} >Assista o Trailer</Button>
               </ContainerButtons>
             </Info>
             <Poster>
