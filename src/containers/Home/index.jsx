@@ -35,8 +35,8 @@ function Home() {
 
   const highlight = selectedItem || mainHighlight;
 
-  function handleSelectItem(item) {
-    setSelectedItem(item);
+  function handleSelectItem(item, type) {
+    setSelectedItem({ ...item, _type: type });
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -45,7 +45,11 @@ function Home() {
       {highlight && (
         <Background $img={getImages(highlight.backdrop_path || highlight.profile_path)}>
           {showModal && 
-            <Modal movieId={highlight.id} setShowModal={setShowModal} />}
+            <Modal
+              movieId={highlight.id}
+              type={highlight._type || (highlight.media_type === "tv" ? "tv" : "movie")}
+              setShowModal={setShowModal}
+            />}
           <Container>
             <Info>
               <h1>{highlight.title || highlight.name}</h1>
@@ -74,7 +78,7 @@ function Home() {
             key={cfg.key}
             info={lists[cfg.key]}
             title={cfg.title}
-            onSelect={handleSelectItem}
+            onSelect={item => handleSelectItem(item, cfg.type)}
           />
         ) : null
       )}
