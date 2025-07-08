@@ -41,7 +41,7 @@ function Home() {
     setSelectedItem({ ...item, _type: type });
     setTimeout(() => {
       highlightRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, 100); // Pequeno delay para garantir renderização
+    }, 50); // Pequeno delay para garantir renderização
   }
 
   return (
