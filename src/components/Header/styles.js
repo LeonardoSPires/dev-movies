@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MainHeader = styled.header`
   background-color: ${(props =>
     props.scrolled ? "#000" : 'transparent' )};
-  transition: ease-in-out 0.7s;
+  transition: ease-in-out 0.5s;
   position: fixed;
   width: 100vw;
   z-index: 10;
@@ -14,7 +14,7 @@ export const MainHeader = styled.header`
 
   img {
     width: 30%;
-    min-height: 70px;
+    min-height: 80px;
     margin: 10px 0;
     max-width: 300px;
     height: auto;

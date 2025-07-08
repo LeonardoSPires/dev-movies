@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import { Background, Info, Poster, Container, ContainerButtons } from "./styles";
 import Button from "../../components/Button";
@@ -14,12 +15,13 @@ function Home() {
   const [mainHighlight, setMainHighlight] = useState();
   const [selectedItem, setSelectedItem] = useState();
   const [lists, setLists] = useState({});
+  const highlightRef = useRef(null);
+  const navigate = useNavigate();
 
   // Função genérica para buscar dados
   async function fetchList(endpoint, key, setHighlight = false) {
     try {
       const { data: { results } } = await api.get(endpoint);
-      console.log("Resultados recebidos para", key, ":", results); // Mostra os dados recebidos
       setLists(prev => ({ ...prev, [key]: results }));
       if (setHighlight && results.length > 0) setMainHighlight(results[0]);
     } catch (error) {
@@ -37,13 +39,18 @@ function Home() {
 
   function handleSelectItem(item, type) {
     setSelectedItem({ ...item, _type: type });
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setTimeout(() => {
+      highlightRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 100); // Pequeno delay para garantir renderização
   }
 
   return (
     <>
       {highlight && (
-        <Background $img={getImages(highlight.backdrop_path || highlight.profile_path)}>
+        <Background
+          ref={highlightRef}
+          $img={getImages(highlight.backdrop_path || highlight.profile_path)}
+        >
           {showModal && 
             <Modal
               movieId={highlight.id}
@@ -59,8 +66,8 @@ function Home() {
                   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut laoreet dictum, massa erat ultricies enim, nec dictum ex enim nec urna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."}
               </p>
               <ContainerButtons>
-                <Button red={true}>Assista Agora</Button>
-                <Button onClick={() => setShowModal(true)} red={false} >Assista o Trailer</Button>
+                <Button onClick={() => navigate(`/detalhe/${highlight.id}`)} red={true}  >Assista Agora</Button>
+                <Button onClick={() => setShowModal(true)} red={false}>Assista o Trailer</Button>
               </ContainerButtons>
             </Info>
             <Poster>

@@ -13,14 +13,22 @@ function Modal({ movieId, type, setShowModal }) {
       const {
         data: { results }
       } = await api.get(`/${type}/${movieId}/videos`);
-      setMovie(results[0]);
-    }
+        if (results.length === 0) {
+            console.warn(`No videos found for ${type} with ID ${movieId}`);
+            setMovie(null);
+            return;
+        }
+      console.log("Resultados de vídeos:", results);
+      const trailer = results.find(v => v.type === "Teaser") || results[0];
+      setMovie(trailer);
+      
+    } 
     getVideos();
   }, [movieId, type]);
 
   return (
     <Background onClick={() => setShowModal(false)}>
-      {movie && (
+      {movie ? (
         <Container>
           <iframe
             src={`https://www.youtube.com/embed/${movie.key}`}
@@ -28,6 +36,10 @@ function Modal({ movieId, type, setShowModal }) {
             height={"500px"}
             width={"100%"}
           />
+        </Container>
+      ) : (
+        <Container>
+          <p>Trailer não disponível para este título.</p>
         </Container>
       )}
     </Background>
