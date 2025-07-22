@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { MainHeader, Menu, Li } from './styles';
 
 function Header() {
-  const [scrolled, setScrolled] = useState("false");
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     function onScroll() {
@@ -15,7 +15,7 @@ function Header() {
   }, []);
 
   return (
-    <MainHeader scrolled={scrolled}>
+    <MainHeader $scrolled={scrolled}>
       <img src={Logo} alt="logo-dev-movies"/>
       <Menu>
         <Li>

@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 export const MainHeader = styled.header`
-  background-color: ${(props =>
-    props.scrolled ? "#000" : 'transparent' )};
+   background: ${props => props.$scrolled ? "#000" : "transparent"};
   transition: ease-in-out 0.5s;
   position: fixed;
   width: 100vw;

@@ -1,45 +1,98 @@
-import styled, { css } from "styled-components"; 
+import styled from "styled-components";
 
-const buttonStyles = css`
-    border: 3px solid #fff;
-    background: transparent;
-    color: #fff;
-    border-radius: 30px;
-    padding: 10px 20px;
-    font-size: 20px;
-    cursor: pointer;
-    font-weight: 500;
+export const ContainerDetail = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: #000;
+  width: 100%;
+  height: 100vh;
+  color: #fff;
+  position: relative;
 
-    &:hover {
-        background: #fff;
-        color: #ff0000;
-        transition: 0.3s;
-    }
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); // 50% mais escuro
+    z-index: 3;
+    pointer-events: none;
+  }
 
-    @media (max-width: 600px) {
-        padding: 8px 12px;
-        font-size: 16px;
-        width: 90%;
-        min-width: 120px;
-        margin: 0 auto;
-        display: block;
-    }
-`
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+`;
 
-export const ButtonWithe = styled.button`
-    ${buttonStyles}
-`
+export const Background = styled.div`
+  width: 100%;
+  min-height: 50vh;
+  background-image: url(${(props) => props.$img});
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  padding: 20px;
 
-export const ButtonRed = styled.button`
-    ${buttonStyles}
-    background: #ff0000;
-    border: 4px solid transparent;
-    box-shadow: 0px 0px 7px 8px rgba(255 0 0 / 30%);
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 40%;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 100%
+    );
+  }
+`;
 
-    &:hover {
-        box-shadow: 0px 0px 7px 15px rgba(255 0 0 / 30%);
-        background: #ff0000;
-        color: #fff;
-        transition: 0.3s;
-    }
-`
+export const Info = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  top: -50px;
+  position: relative;
+  padding: 20px;
+  z-index: 4;
+`;
+
+export const Poster = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  margin-right: 32px;
+  
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 12px;
+    
+  }
+`;
+
+export const Description = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+  p {
+    margin-bottom: 24px;
+  }
+`;
+

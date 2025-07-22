@@ -7,7 +7,7 @@ import AppRoutes from './routes/routes.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter basename="/dev-movies">
+    <BrowserRouter basename="/dev-movies/">
       <AppRoutes />
     </BrowserRouter>
     <GlobalStyle />
