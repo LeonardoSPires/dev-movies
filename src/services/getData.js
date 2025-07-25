@@ -5,18 +5,39 @@ export default function useFetchLists(sliderConfigs) {
   const [lists, setLists] = useState({});
   const [mainHighlight, setMainHighlight] = useState();
 
-  
   useEffect(() => {
-    sliderConfigs.forEach(async (cfg) => {
+    async function fetchAll() {
       try {
-        const { data: { results } } = await api.get(cfg.endpoint);
+        const promises = sliderConfigs.map(cfg =>
+          api.get(cfg.endpoint).then(res => ({
+            key: cfg.key,
+            type: cfg.type,              // <- pegamos o type da config
+            results: res.data.results
+          }))
+        );
 
-        setLists(prev => ({ ...prev, [cfg.key]: results }));
-        if (cfg.key === "popMovies" && results.length > 0) setMainHighlight(results[0]);
+        const resultsArray = await Promise.all(promises);
+        const newLists = {};
+
+        resultsArray.forEach(({ key, type, results }) => {
+          // Adiciona _type em cada item da lista
+          const typedResults = results.map(item => ({ ...item, _type: type }));
+
+          newLists[key] = typedResults;
+
+          // Define o mainHighlight (Ex: primeiro item de "popMovies")
+          if (key === "popMovies" && typedResults.length > 0) {
+            setMainHighlight(typedResults[0]);  // Já vem com _type
+          }
+        });
+
+        setLists(newLists);
       } catch (error) {
-        console.error(`Error fetching ${cfg.key}:`, error);
+        console.error("Erro ao buscar listas:", error);
       }
-    });
+    }
+
+    fetchAll();
   }, [sliderConfigs]);
 
   return { lists, mainHighlight };

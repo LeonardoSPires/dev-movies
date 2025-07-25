@@ -20,6 +20,7 @@ function Home() {
 
   function handleSelectItem(item, type) {
     setSelectedItem({ ...item, _type: type });
+    console.log("Item selecionado:", type);
     setTimeout(() => {
       highlightRef.current?.scrollIntoView({ behavior: "smooth" });
     }, 50);
@@ -53,8 +54,18 @@ function Home() {
                   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut laoreet dictum, massa erat ultricies enim, nec dictum ex enim nec urna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."}
               </p>
               <ContainerButtons>
-                <Button onClick={() => navigate(`/detalhe/${highlight.id}`)} red={true}>Datail</Button>
-                <Button onClick={() => setShowModal(true)} red={false}>Watch the Trailer</Button>
+               <Button onClick={() => {
+                 const type = highlight._type || highlight.media_type || 'movie';
+                 navigate(`/detalhe/${type}/${highlight.id}`);
+               }}
+               red={true}
+               >
+                 Detalhes
+               </Button>
+                <Button onClick={
+                  () => setShowModal(true)} red={false}>
+                    Assistir Trailer
+                </Button>
               </ContainerButtons>
             </Info>
           </Container>

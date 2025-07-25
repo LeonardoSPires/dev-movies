@@ -9,6 +9,7 @@ const buttonStyles = css`
     font-size: 20px;
     cursor: pointer;
     font-weight: 500;
+    min-width: 150px;
 
     &:hover {
         background: #fff;

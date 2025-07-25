@@ -66,7 +66,7 @@ export const Info = styled.div`
   justify-content: center;
   top: -50px;
   position: relative;
-  padding: 20px;
+  padding: 20px 10%;
   z-index: 4;
 `;
 
@@ -76,12 +76,11 @@ export const Poster = styled.div`
   align-items: center;
   height: 400px;
   margin-right: 32px;
-  
+
   img {
     max-width: 100%;
     max-height: 100%;
     border-radius: 12px;
-    
   }
 `;
 
@@ -90,9 +89,55 @@ export const Description = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   color: #fff;
+  font-weight: bold;
+
   p {
     margin-bottom: 24px;
+    text-align: justify;
+  }
+`;
+
+export const GenreBadge = styled.span`
+  display: inline-block;
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 16px;
+  padding: 6px 16px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+`;
+
+export const CastGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 16px;
+  gap: 5px;
+`;
+
+export const CastItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  img {
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    background: #222;
+  }
+  span {
+    color: #fff;
+    font-size: 0.9rem;
+    text-align: center;
   }
 `;
 
