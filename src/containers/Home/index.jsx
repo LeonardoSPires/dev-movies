@@ -40,7 +40,7 @@ function Home() {
               setShowModal={setShowModal}
             />}
           <Container>
-            <Poster style={{ display: "flex", justifyContent: "center", alignItems: "center", flex: "0 0 300px" }}>
+            <Poster>
               <img
                 src={getImages(highlight.poster_path || highlight.profile_path)}
                 alt={highlight.title || highlight.name}

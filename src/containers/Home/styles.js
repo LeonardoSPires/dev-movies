@@ -85,6 +85,10 @@ export const Info = styled.div`
 
 export const Poster = styled.div`
   z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 300px;
   img {
     width: 300px;
     border-radius: 30px;

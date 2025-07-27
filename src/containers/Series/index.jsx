@@ -1,12 +1,14 @@
 import React from "react";
-
+import ContentList from "../../components/ContentList";
+import { Title } from "../../components/ContentList/styles";
 
 function Series() {
   return (
-    <div>
-      <h1>Series</h1>
-      <p>Here you can find a list of series.</p>
-    </div>
+    <>
+      <Title style={{ paddingTop: "5rem" }}>Séries</Title>
+      <ContentList title="Séries Populares" endpoint="/tv/popular" type="tv" />
+      <ContentList title="Melhores Séries" endpoint="/tv/top_rated" type="tv" />
+    </>
   );
 }
 
