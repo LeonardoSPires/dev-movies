@@ -71,7 +71,7 @@ export const Li = styled.li`
   }
   a:hover {
  
-    color:#c2bbbb;
+    color: #0a0a68ff;
     transition: color 0.4s ease-in-out;
   }
 
@@ -79,14 +79,14 @@ export const Li = styled.li`
     content: "";
     height: 3px;
     width: 100%;
-    background-color: #007;
+    background-color: #0a0a68ff;
     position: absolute;
     bottom: -10px;
     left: 0;
 
   }
   a:hover::after {
-    background-color: #003;
+    background-color: #040441;
     transition: background-color 0.3s ease-in-out;
   }
 
