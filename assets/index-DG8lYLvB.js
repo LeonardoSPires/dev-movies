@@ -89,11 +89,12 @@ Please change the parent <Route path="${M}"> to <Route path="${M==="/"?"*":`${M}
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,1) 100%);
+    z-index: 1;
+}
+
 
   @media (max-width: 900px) {
     
@@ -378,7 +379,7 @@ Please change the parent <Route path="${M}"> to <Route path="${M==="/"?"*":`${M}
   }
   a:hover {
  
-    color:#c2bbbb;
+    color: #0a0a68ff;
     transition: color 0.4s ease-in-out;
   }
 
@@ -386,14 +387,14 @@ Please change the parent <Route path="${M}"> to <Route path="${M==="/"?"*":`${M}
     content: "";
     height: 3px;
     width: 100%;
-    background-color: #007;
+    background-color: #0a0a68ff;
     position: absolute;
     bottom: -10px;
     left: 0;
 
   }
   a:hover::after {
-    background-color: #003;
+    background-color: #040441;
     transition: background-color 0.3s ease-in-out;
   }
 
@@ -413,126 +414,100 @@ Please change the parent <Route path="${M}"> to <Route path="${M==="/"?"*":`${M}
 `;function DT(){const[n,a]=B.useState(!1);return B.useEffect(()=>{function i(){a(window.scrollY>150)}return window.addEventListener("scroll",i),()=>window.removeEventListener("scroll",i)},[]),$.jsxs(MT,{$scrolled:n,children:[$.jsx("img",{src:_T,alt:"logo-dev-movies"}),$.jsxs(zT,{children:[$.jsx(zc,{children:$.jsx(Mi,{to:"/",children:"Home"})}),$.jsx(zc,{children:$.jsx(Mi,{to:"/movies",children:"Filmes"})}),$.jsx(zc,{children:$.jsx(Mi,{to:"/series",children:"Séries"})})]})]})}function NT(){return $.jsxs($.Fragment,{children:[$.jsx(DT,{}),$.jsx(y1,{})]})}const LT=Ne.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  background-color: #000;
-  width: 100%;
-  height: 100vh;
+  align-items: center;
   color: #fff;
+`,UT=Ne.div`
+  width: 100%;
+  height: 50vh;
+  background-image: url(${n=>n.$img});
+  background-size: cover;
+  background-position: center;
   position: relative;
 
   &::before {
     content: "";
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); // 50% mais escuro
-    z-index: 3;
-    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
   }
 
-  > * {
-    position: relative;
-    z-index: 2;
-  }
-`,UT=Ne.div`
-  width: 100%;
-  min-height: 50vh;
-  background-image: url(${n=>n.$img});
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  top: 0;
-  left: 0;
-  padding: 20px;
-
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 40%;
-    pointer-events: none;
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 1) 100%
-    );
+  @media (max-width: 768px) {
+    height: 30vh;
   }
 `,BT=Ne.div`
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  top: -50px;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  width: 100%;
   position: relative;
-  padding: 20px 10%;
-  z-index: 4;
+  z-index: 1;
+  margin-top: -10rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    margin-top: -5rem;
+  }
 `,HT=Ne.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 400px;
-  margin-right: 32px;
+  flex: 0 0 300px;
 
   img {
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 12px;
+    width: 100%;
+    border-radius: 1rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+  }
+
+  @media (max-width: 768px) {
+    flex: none;
+    width: 60%;
   }
 `,jT=Ne.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  font-weight: bold;
+  gap: 1rem;
+
+  h1 {
+    font-size: 2rem;
+
+    @media (max-width: 768px) {
+      text-align: center;
+    }
+  }
 
   p {
-    margin-bottom: 24px;
-    text-align: justify;
+    line-height: 1.5;
   }
 `,qT=Ne.span`
   display: inline-block;
-  background: transparent;
-  color: #fff;
-  border: 1px solid #fff;
-  border-radius: 16px;
-  padding: 6px 16px;
-  margin-right: 8px;
-  margin-bottom: 8px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  letter-spacing: 1px;
+  background-color: #e50914;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  margin-right: 0.5rem;
 `,GT=Ne.div`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  margin-top: 16px;
-  gap: 5px;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
 `,YT=Ne.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(0, 0, 0, 0.7);
-  border-radius: 8px;
+  text-align: center;
+  font-size: 0.9rem;
+
   img {
-    width: 100px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 5px;
-    margin-bottom: 8px;
-    background: #222;
-  }
-  span {
-    color: #fff;
-    font-size: 0.9rem;
-    text-align: center;
+    width: 100%;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 `;function VT(){const{type:n,id:a}=a1();console.log("Type:",n,"ID:",a);const[i,s]=B.useState(null),[o,c]=B.useState([]);return B.useEffect(()=>{async function d(){try{const{data:h}=await Hi.get(`/${n}/${a}`);s(h)}catch(h){console.error("Erro ao buscar item:",h),s(null)}}async function m(){try{const{data:h}=await Hi.get(`/${n}/${a}/credits`);c(h.cast)}catch(h){console.error("Erro ao buscar créditos:",h),c([])}}d(),m()},[a,n]),$.jsx($.Fragment,{children:i&&$.jsxs(LT,{children:[$.jsx(UT,{$img:ga(i.backdrop_path||i.profile_path)}),$.jsxs(BT,{children:[$.jsx(HT,{children:$.jsx("img",{src:ga(i.poster_path||i.profile_path),alt:i.title||i.name})}),$.jsxs(jT,{children:[$.jsx("h1",{children:i.title||i.name}),$.jsxs("p",{children:[$.jsx("strong",{children:"Data de lançamento:"})," ",i.release_date||i.first_air_date]}),$.jsx("div",{children:i.genres&&i.genres.map(d=>$.jsx(qT,{children:d.name},d.id))}),$.jsx("p",{children:i.overview}),$.jsx("h2",{children:"Créditos"}),$.jsx(GT,{children:o.slice(0,5).map(d=>$.jsxs(YT,{children:[$.jsx("img",{src:ga(d.profile_path),alt:d.name}),$.jsx("span",{children:d.name})]},d.id))})]})]})]})})}function XT(){return $.jsx(b1,{children:$.jsxs(pa,{element:$.jsx(NT,{}),children:[$.jsx(pa,{path:"/",element:$.jsx(AT,{})}),$.jsx(pa,{path:"/movies",element:$.jsx(RT,{})}),$.jsx(pa,{path:"/series",element:$.jsx(CT,{})}),$.jsx(pa,{path:"/detalhe/:type/:id",element:$.jsx(VT,{})})]})})}AS.createRoot(document.getElementById("root")).render($.jsxs(Ce.StrictMode,{children:[$.jsx(Q1,{basename:"/dev-movies/",children:$.jsx(XT,{})}),$.jsx(tE,{})]}));
